@@ -1,0 +1,27 @@
+@import "../style/root.css";
+
+.btn-secondary{
+    background-color: var(--succes);
+    border-color: var(--primary);
+}
+  
+.btn-secondary:hover{
+    background-color: var(--primary);
+    border-color: var(--succes);
+    color: var(--succes);
+}
+
+.btn-secondary:active{
+    background-color: var(--primary) !important;
+    border-color: var(--succes) !important;
+    color: var(--succes) !important;
+}
+
+.btn-secondary:disabled{
+    background-color: var(--gray) !important;
+    border-color: var(--body) !important;
+}
+
+.hidden{
+    display:'none';
+}

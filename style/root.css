@@ -1,0 +1,29 @@
+:root {
+
+    --primary: #FFFFFF; /* must be RGB because of emails */
+    --secondary: #0077B5;
+    --succes: #E68523;
+    --danger: #cf2e2e;
+    --warning: #ff6900;
+    --info: #E68523;
+    --body: #FFF;
+    --gray: #6c757d;
+    --gray-500: #adb5bd;
+
+    --text-normal: #111;
+
+    --footer: #000000;
+
+    /* break points */
+    --sm: 576px;
+    --md: 768px;
+    --lg: 992px;
+    --xl: 1200px;
+    --xxl: 1400px;
+
+    /* header hieght */
+    --h: 150px;
+    --h-lg: 200px;
+    --h-xl: 250px;
+
+}
