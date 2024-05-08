@@ -44,24 +44,28 @@ function getElements(selectors = undefined){
 
 
 
-// function calcSurf(selectors = undefined){
+function calcSurf(selectors = undefined){
 
-//     const elements = getElements(selectors);
+    const elements = getElements(selectors);
 
-//     if(elements == false){
-//         return false;
-//     }
+    if(elements == false){
+        return false;
+    }
 
-//     console.log(elements);
-//     // add event listner
-//     elements.input.addEventListener('change', ()=>{
+    console.log(elements);
+    // add event listner
+    elements.input.addEventListener('change', ()=>{
         
-        
-//         console.log("change");
-//     })
+        //get value from data
+        let data = elements.input.innerText;
 
-//     return true;
-// }
+
+        
+        console.log(data);
+    })
+
+    return true;
+}
 
 
 console.log(calcSurf(selectors.opp));
