@@ -1,14 +1,17 @@
 console.log("RUN TOOL SCRIPT");
 
 const selectors = {
-    opp:{
-        data:'a-data',
-        input:'a-pakken',
+    surf:{
+        data:'data',
+        input:'a-input',
         result:'a-result'
+    },
+    number:{
+        data:'data',
+        input:'n-input',
+        result:'n-result'
     }
 }
-
-
 
 
 function getElements(selectors = undefined){
@@ -42,8 +45,6 @@ function getElements(selectors = undefined){
 
 
 
-
-
 function calcSurf(selectors = undefined){
 
     const elements = getElements(selectors);
@@ -52,20 +53,64 @@ function calcSurf(selectors = undefined){
         return false;
     }
 
-    console.log(elements);
     // add event listner
-    elements.input.addEventListener('change', ()=>{
+    elements.input.addEventListener('change', (e)=>{
         
-        //get value from data
-        let data = elements.input.innerText;
+        //get surface value from data
+        let data = elements.data.innerText;
+
+        //clean data
+        const surface = data.match(/^\d+/)[0];
 
 
-        
-        console.log(data);
+        //get packadges value from input
+        const number = e.target.value;
+
+        //calc surface
+        const result = Math.floor((number * surface));
+
+        //set result to data field
+        elements.result.innerText  = result + " m2";
+
     })
 
     return true;
 }
 
 
-console.log(calcSurf(selectors.opp));
+function calcNumber(selectors = undefined){
+
+    const elements = getElements(selectors);
+
+    if(elements == false){
+        return false;
+    }
+
+    // add event listner
+    elements.input.addEventListener('change', (e)=>{
+        
+        //get surface value from data
+        let data = elements.data.innerText;
+
+        //clean data
+        const surface = data.match(/^\d+/)[0];
+        
+        console.log(surface);
+
+        //get packadges value from input
+        console.log(e.target.value);
+        const number = e.target.value;
+
+        //calc surface
+        const result = Math.ceil((number / surface) * 1.1);
+
+        //set result to data field
+        elements.result.innerText  = result;
+
+    })
+
+    return true;
+}
+
+calcSurf(selectors.surf);
+console.log(calcNumber(selectors.number));
