@@ -44,24 +44,24 @@ function getElements(selectors = undefined){
 
 
 
-function calcSurf(selectors = undefined){
+// function calcSurf(selectors = undefined){
 
-    const elements = getElements(selectors);
+//     const elements = getElements(selectors);
 
-    if(elements == false){
-        return false;
-    }
+//     if(elements == false){
+//         return false;
+//     }
 
-    console.log(elements);
-    // add event listner
-    elements.input.addEventListener('change', ()=>{
+//     console.log(elements);
+//     // add event listner
+//     elements.input.addEventListener('change', ()=>{
         
         
-        console.log("change");
-    })
+//         console.log("change");
+//     })
 
-    return true;
-}
+//     return true;
+// }
 
 
 console.log(calcSurf(selectors.opp));
