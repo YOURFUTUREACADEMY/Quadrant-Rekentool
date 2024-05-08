@@ -3,15 +3,17 @@ const selectors = {
     surf:{
         data:'data',
         input:'a-input',
-        result:'a-result'
+        result:'n-input'
     },
     number:{
         data:'data',
         input:'n-input',
-        result:'n-result'
+        result:'a-input'
     }
 }
 
+// correction factor for floor surface
+const calCorrection = 1.1;
 
 function getElements(selectors = undefined){
 
@@ -70,10 +72,10 @@ function calcSurf(selectors = undefined){
     const number = elements.input.value;
 
     //calc surface
-    const result = Math.floor((number * surface));
+    const result = Math.floor((number * surface) * (1 - (calCorrection - 1)));
 
     //set result to data field
-    elements.result.innerText  = result + " m2";
+    elements.result.value  = result;
 
     return true;
 }
@@ -94,10 +96,10 @@ function calcNumber(selectors = undefined){
     const number = elements.input.value;
 
     //calc number of packs
-    const result = Math.ceil((number / surface) * 1.1);
+    const result = Math.ceil((number / surface) * calCorrection);
 
     //set result to data field
-    elements.result.innerText  = result;
+    elements.result.value  = result;
 
     return true;
 }
