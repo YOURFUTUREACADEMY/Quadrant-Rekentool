@@ -1,5 +1,4 @@
-console.log("RUN TOOL SCRIPT");
-
+// selectos for function
 const selectors = {
     surf:{
         data:'data',
@@ -44,35 +43,37 @@ function getElements(selectors = undefined){
 }
 
 
+function getData(element){
+
+        //get surface value from data
+        let data = element.innerText;
+
+        //clean data
+        return data.match(/^\d+/)[0];
+
+}
+
 
 function calcSurf(selectors = undefined){
-
+    
     const elements = getElements(selectors);
 
     if(elements == false){
         return false;
     }
-
-    // add event listner
-    elements.input.addEventListener('change', (e)=>{
         
-        //get surface value from data
-        let data = elements.data.innerText;
-
-        //clean data
-        const surface = data.match(/^\d+/)[0];
+    //get surface data
+    const surface = getData(elements.data);
 
 
-        //get packadges value from input
-        const number = e.target.value;
+    //get packadges value from input
+    const number = elements.input.value;
 
-        //calc surface
-        const result = Math.floor((number * surface));
+    //calc surface
+    const result = Math.floor((number * surface));
 
-        //set result to data field
-        elements.result.innerText  = result + " m2";
-
-    })
+    //set result to data field
+    elements.result.innerText  = result + " m2";
 
     return true;
 }
@@ -85,32 +86,68 @@ function calcNumber(selectors = undefined){
     if(elements == false){
         return false;
     }
-
-    // add event listner
-    elements.input.addEventListener('change', (e)=>{
         
-        //get surface value from data
-        let data = elements.data.innerText;
+    //get surface per pack data
+    const surface = getData(elements.data);
 
-        //clean data
-        const surface = data.match(/^\d+/)[0];
-        
-        console.log(surface);
+    //get surface value from input
+    const number = elements.input.value;
 
-        //get packadges value from input
-        console.log(e.target.value);
-        const number = e.target.value;
+    //calc number of packs
+    const result = Math.ceil((number / surface) * 1.1);
 
-        //calc surface
-        const result = Math.ceil((number / surface) * 1.1);
-
-        //set result to data field
-        elements.result.innerText  = result;
-
-    })
+    //set result to data field
+    elements.result.innerText  = result;
 
     return true;
 }
 
+// set values on load
 calcSurf(selectors.surf);
-console.log(calcNumber(selectors.number));
+calcNumber(selectors.number);
+
+// selectors for event listners
+const inputs = {
+    surf:selectors.surf.input,
+    number:selectors.number.input,
+}
+
+const elements = getElements(inputs);
+
+// set surface event
+if(elements.surf){
+    elements.surf.addEventListener('change', ()=>{
+        calcSurf(selectors.surf);
+    });
+}
+
+
+// set number event
+if(elements.number){
+    elements.number.addEventListener('change', ()=>{
+        calcNumber(selectors.number);
+    });
+}
+
+
+
+
+// for data manipulation and test only -> NOT FOR ACTUAL PROJECT 
+const data = document.getElementById("change-data");
+
+if(data){
+
+    data.addEventListener('blur',(e)=>{
+        
+        const dataEle = document.getElementById("data");
+
+        if(dataEle){
+
+            dataEle.innerText = e.target.value + 'm2';
+
+        }
+
+        calcSurf(selectors.surf);
+        calcNumber(selectors.number);
+    })
+}
